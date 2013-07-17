@@ -1,0 +1,32 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           i18n_domain="collective.stomach">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="stomach_view"
+      class=".stomachview.StomachView"
+      allowed_interface=".stomachview.IStomachView"
+      permission="zope.Public"
+      />
+
+
+    <!-- If you are using plone version 3.0, you will need to include the 
+         plone.browserlayer package in your buildout and uncomment the following
+         line in order to use IStomachLayer as a layer attribute -->
+    <!-- 
+    <include package="plone.browserlayer" />
+    -->
+    <!-- Example of browser component with ICollectiveStomachLayer layer attribute -->
+    <!-- 
+    <browser:page
+        name="my-view"
+        for="*"
+        permission="zope.Public"
+        template="my-view.pt"
+        layer="..interfaces.IStomachLayer"
+        />
+    -->
+
+</configure>
