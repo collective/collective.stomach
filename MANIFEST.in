@@ -1,6 +1,7 @@
 include *.py
 include *.rst
 include *.txt
+include *.in
 
 recursive-include docs *.GPL
 recursive-include docs *.txt
