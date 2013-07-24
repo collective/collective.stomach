@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+    <record name="collective.stomach.token">
+        <field type="plone.registry.field.TextLine">
+            <title>Token</title>
+        </field>
+        <value>my_secret_token</value>
+    </record>
+
+</registry>
