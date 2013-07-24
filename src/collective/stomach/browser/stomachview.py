@@ -1,4 +1,6 @@
 from zope.interface import implements, Interface
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -30,8 +32,12 @@ class StomachView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.registry = getUtility(IRegistry)
 
     def __call__(self):
+        token = self.registry['collective.stomach.token']
+        if self.request.form.get('token') != token:
+            return "Invalid token"
         contenttype = self.request.getHeader('CONTENT_TYPE')
         if contenttype == 'application/json':
             return json.dumps(self.get_eggs())
