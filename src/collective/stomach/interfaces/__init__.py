@@ -1,2 +1,0 @@
-from stomachlayer import IStomachLayer
-

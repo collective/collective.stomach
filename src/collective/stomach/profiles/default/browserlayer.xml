@@ -3,7 +3,7 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <layer name="CollectiveStomach"
-        interface="collective.stomach.interfaces.stomachlayer.IStomachLayer"
+        interface="collective.stomach.interfaces.IStomachLayer"
     />
 </layers>
 

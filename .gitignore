@@ -9,7 +9,6 @@ var/
 *.pyc
 *.swp
 src/*.egg-info
-buildout.cfg
 coverage
 .mr.developer.cfg
 robot-output
