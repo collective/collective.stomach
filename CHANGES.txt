@@ -4,7 +4,8 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Remove unused yolk package dependency.
+  [bsuttor]
 
 
 0.2 (2013-07-25)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implements, Interface
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
@@ -5,11 +6,10 @@ from plone.registry.interfaces import IRegistry
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from yolk.setuptools_support import get_pkglist
-from yolk.yolklib import Distributions
-from yolk.metadata import get_metadata
-
+import pkg_resources
 import json
+
+XML_RPC_SERVER = 'http://pypi.python.org/pypi'
 
 
 class IStomachView(Interface):
@@ -48,21 +48,27 @@ class StomachView(BrowserView):
         """
         return a list with all eggs installed ant it version
         """
-        #import os;
-        #os.environ['HOME']='/home/bsuttor/Projects/collective.stomach'
         eggs = []
-        dists = Distributions()
-        pkg_list = get_pkglist()
-        for pkg in pkg_list:
-            for (dist, active) in dists.get_distributions("all",
-                                            pkg,
-                                            dists.get_highest_installed(pkg)):
-                metadata = get_metadata(dist)
-                egg_name = metadata.get('Name')
-                version = metadata.get('Version')
-                eggs.append({
-                    "name": egg_name,
-                    "version": version,
-                    })
+        pkg_list = pkg_resources.Environment()
+        for pkg_name in pkg_list:
+            pkg = pkg_resources.Environment()[pkg_name]
+            if len(pkg) == 1:
+                egg = {}
+                egg['name'] = pkg[0].project_name
+                egg['version'] = pkg[0].version
+            else:
+                # mutliple version of this package installed
+                versions = []
+                for p in pkg:
+                    egg = {}
+                    egg['name'] = p.project_name
+                    versions.append(p.version)
+                egg['version'] = versions
+
+            eggs.append(egg)
 
         return eggs
+
+    def get_latest_version_from_pipy(egg):
+        # TODO
+        pass

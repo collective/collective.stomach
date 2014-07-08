@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
 version = '0.3.dev0'
@@ -41,7 +42,6 @@ setup(name='collective.stomach',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'yolk',
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""
